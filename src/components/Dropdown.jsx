@@ -19,7 +19,6 @@ export default function Dropdown({ selectUserHandler }) {
   useEffect(() => {
     getUsers();
   }, []);
-  
 
   return (
     <Menu
@@ -44,8 +43,9 @@ export default function Dropdown({ selectUserHandler }) {
       >
         <Menu.Items className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
           <div className="py-1">
-            {users.map((user) => (
+            {users.map((user, index) => (
               <Menu.Item
+                key={index}
                 onClick={() => {
                   selectUserHandler(user);
                 }}
@@ -58,7 +58,7 @@ export default function Dropdown({ selectUserHandler }) {
                       "block px-4 py-2 text-sm"
                     )}
                   >
-                    {user.name} ({user.email})
+                    {user.name} <br />({user.email})
                   </a>
                 )}
               </Menu.Item>

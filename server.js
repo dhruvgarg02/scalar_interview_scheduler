@@ -6,7 +6,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const User = require("./models/user");
-// const Schedule = require("./models/schedule");
 const Interview = require("./models/interview");
 
 app.use(cors());
@@ -44,7 +43,6 @@ app.get("/allInterviews", async (req, res) => {
 });
 
 app.post("/scheduleInterview", async (req, res) => {
-  console.log(req.body);
   try {
     await Interview.create({
       start: req.body.startTime,
@@ -52,6 +50,39 @@ app.post("/scheduleInterview", async (req, res) => {
       participants: req.body.selectedUsers,
     });
     res.send("Interview Scheduled Successfully");
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.delete("/deleteInterview/:id", async (req, res) => {
+  try {
+    await Interview.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.send("Interview Deleted Successfully");
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.put("/updateInterview/:id", async (req, res) => {
+  try {
+    await Interview.update(
+      {
+        start: req.body.startTime,
+        end: req.body.endTime,
+        participants: req.body.selectedUsers,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    res.send("Interview Updated Successfully");
   } catch (error) {
     res.send(error);
   }
