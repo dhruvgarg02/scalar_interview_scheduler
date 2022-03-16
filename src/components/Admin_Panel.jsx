@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Dropdown from "./Dropdown";
-import Interview_Modal from "./Interview_Modal";
 import "./admin-panel.css";
 
 function Admin_Panel({ selectedInterview }) {
@@ -167,7 +166,7 @@ function Admin_Panel({ selectedInterview }) {
                 id="Start"
                 name="Start"
                 value={startTime}
-                onInput={(e) => {
+                onChange={(e) => {
                   setStartTime(e.target.value);
                 }}
               ></input>
@@ -181,8 +180,8 @@ function Admin_Panel({ selectedInterview }) {
                 type="datetime-local"
                 id="End"
                 name="End"
-                placeholder={endTime}
-                onInput={(e) => {
+                value={endTime}
+                onChange={(e) => {
                   setEndTime(e.target.value);
                 }}
               ></input>
