@@ -51,7 +51,7 @@ function Admin_Panel({ selectedInterview }) {
     const selectedStart = convertToLocal(start);
     const selectedEnd = convertToLocal(end);
     interviews.forEach((interview) => {
-      if (interview.id !== selectedInterview.id) {
+      if (interview.id !== selectedInterview?.id) {
         const interviewStart = convertToLocal(interview.start);
         const interviewEnd = convertToLocal(interview.end);
         if (
@@ -72,7 +72,7 @@ function Admin_Panel({ selectedInterview }) {
     const selectedStart = convertToLocal(start);
     const selectedEnd = convertToLocal(end);
     interviews.forEach((interview) => {
-      if (interview.id !== selectedInterview.id) {
+      if (interview.id !== selectedInterview?.id) {
         const interviewStart = convertToLocal(interview.start);
         const interviewEnd = convertToLocal(interview.end);
         if (
@@ -208,7 +208,7 @@ function Admin_Panel({ selectedInterview }) {
             if (!checkError()) {
               if (selectedInterview !== null) {
                 updateInterviewHandler(selectedInterview);
-              } else {
+              } else if (selectedInterview === null) {
                 scheduleHandler();
               }
               window.location.reload();
