@@ -21,8 +21,16 @@ function Admin_Panel({ selectedInterview }) {
     setInterviews(interview);
   };
 
+  const userExists = (id) => {
+    return selectedUsers.some((user) => {
+      return user.id === id;
+    });
+  };
+
   const selectUserHandler = (user) => {
-    if (!selectedUsers.includes(user)) {
+    console.log(selectedUsers);
+    if (!userExists(user.id)) {
+      console.log("Hai");
       setSelectedUsers([...selectedUsers, user]);
     }
   };
